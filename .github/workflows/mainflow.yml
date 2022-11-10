@@ -52,6 +52,7 @@ jobs:
       
     - name: Print out File
       run: cat terraform.tfstate
+      continue-on-error: true
 
     - name: Terraform Init
       id: init
