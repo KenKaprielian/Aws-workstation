@@ -1,9 +1,22 @@
 #!/bin/bash
 #echo "<h1>Hello, World</h1>" > index.html
 
-sudo yum install -y yum-utils
-sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-sudo yum -y install terraform
+sudo su -
+
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+yum -y install terraform
+
+(
+  sleep 1
+  echo "test2"
+  sleep .5
+  echo "test3"
+  sleep .5
+  echo "us-east-1"
+  sleep .5
+  echo "json"
+) | /usr/bin/aws configure >> awsconfigure_output
 
 cat <<- EOF > index.html
 <!DOCTYPE html>
