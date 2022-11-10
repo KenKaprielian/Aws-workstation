@@ -49,6 +49,9 @@ jobs:
       env: 
        PASSPHRASE: ${{ secrets.PASSPHRASE }}
       continue-on-error: true
+      
+    - name: Print out File
+      run: cat terraform.tfstate
 
     - name: Terraform Init
       id: init
@@ -66,9 +69,14 @@ jobs:
     - name: Terraform Apply
       id: Apply
       run: terraform apply -auto-approve
-      continue-on-error: false
+      continue-on-error: true
 
-
+    - name: Encrypt State
+      id: encrypt
+      run: gpg --quiet --batch --yes --encrypt --passphrase="$PASSPHRASE" --output terraform.tfstate.gpg terraform.tfstate 
+      env: 
+       PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      continue-on-error: true
 
         
         
