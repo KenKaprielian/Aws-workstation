@@ -1,5 +1,10 @@
 #!/bin/bash
 #echo "<h1>Hello, World</h1>" > index.html
+
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform
+
 cat <<- EOF > index.html
 <!DOCTYPE html>
 <head>
