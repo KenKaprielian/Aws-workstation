@@ -16,9 +16,9 @@ jobs:
         aws --version
         (
           sleep .5
-          echo "${{ secrets.access_key }}"
+          echo "${{ secrets.AWS_ACCESS_KEY_ID }}"
           sleep .5
-          echo "${{ secrets.secret_key }}"
+          echo "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
           sleep .5
           echo "us-east-1"
           sleep .5
