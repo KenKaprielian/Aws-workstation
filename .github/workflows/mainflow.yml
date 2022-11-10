@@ -43,6 +43,12 @@ jobs:
         cat ~/.aws/config
         ls -a
 
+    - name: Decrypt State
+      id: decrypt
+      run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output terraform.tfstate terraform.tfstate.gpg 
+      env: 
+       PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      continue-on-error: true
 
     - name: Terraform Init
       id: init
