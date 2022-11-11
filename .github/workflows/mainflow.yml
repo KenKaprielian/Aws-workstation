@@ -43,6 +43,9 @@ jobs:
         cat ~/.aws/config
         ls -a
 
+    - name: touch
+      run: touch terraform.tfstate.gpg
+      
     - name: Decrypt State
       id: decrypt
       run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output terraform.tfstate terraform.tfstate.gpg 
@@ -69,7 +72,7 @@ jobs:
 
     - name: Terraform Apply
       id: Apply
-      run: terraform apply -auto-approve
+      #run: terraform apply -auto-approve
       continue-on-error: true
 
     - name: Encrypt State
