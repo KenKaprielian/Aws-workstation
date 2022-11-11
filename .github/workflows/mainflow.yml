@@ -72,7 +72,8 @@ jobs:
 
     - name: Terraform Apply
       id: Apply
-      #run: terraform apply -auto-approve
+      run: echo hi
+      #terraform apply -auto-approve
       continue-on-error: true
 
     - name: Encrypt State
