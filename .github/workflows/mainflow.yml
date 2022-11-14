@@ -43,6 +43,7 @@ jobs:
         cat ~/.aws/config
         ls -a
 
+
     - name: touch
       run: touch terraform.tfstate.gpg
       
