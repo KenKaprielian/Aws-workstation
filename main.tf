@@ -12,7 +12,7 @@ resource "aws_instance" "web" {
     Name = "hello-world-web"
   }
 }
-
+ 
 resource "aws_security_group" "web" {
   ingress {
     from_port   = 80
