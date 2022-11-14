@@ -50,6 +50,7 @@ jobs:
     - uses: kenkaprielian/terraform_state_artifact@v1
       with:
         encryptionkey: ${{ secrets.PASSPHRASE }}
+        destroy: true
 
 
         
