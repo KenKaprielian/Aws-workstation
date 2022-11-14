@@ -47,7 +47,7 @@ jobs:
         cat ~/.aws/config
         ls -a
 
-    - uses: sturlabragason/terraform_state_artifact@v1
+    - uses: kenkaprielian/terraform_state_artifact@v1
       with:
         encryptionkey: ${{ secrets.PASSPHRASE }}
 
