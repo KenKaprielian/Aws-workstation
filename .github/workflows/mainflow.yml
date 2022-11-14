@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: hashicorp/setup-terraform@v2
-
+        
     - name: Setup AWS Creds
       run: |
         aws --version
@@ -43,46 +43,10 @@ jobs:
         cat ~/.aws/config
         ls -a
 
+    - uses: sturlabragason/terraform_state_artifact@v1
+      with:
+        encryptionkey: ${{ secrets.PASSPHRASE }}
 
-    - name: touch
-      run: touch terraform.tfstate.gpg
-      
-    - name: Decrypt State
-      id: decrypt
-      run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output terraform.tfstate terraform.tfstate.gpg 
-      env: 
-       PASSPHRASE: ${{ secrets.PASSPHRASE }}
-      continue-on-error: true
-      
-    - name: Print out File
-      run: cat terraform.tfstate
-      continue-on-error: true
-
-    - name: Terraform Init
-      id: init
-      run: terraform init
-
-    - name: Terraform Validate
-      id: validate
-      run: terraform validate -no-color
-
-    - name: Terraform Plan
-      id: plan
-      run: terraform plan -no-color
-      continue-on-error: true
-
-    - name: Terraform Apply
-      id: Apply
-      run: echo hi
-      #terraform apply -auto-approve
-      continue-on-error: true
-
-    - name: Encrypt State
-      id: encrypt
-      run: gpg --quiet --batch --yes --encrypt --passphrase="$PASSPHRASE" --output terraform.tfstate.gpg terraform.tfstate 
-      env: 
-       PASSPHRASE: ${{ secrets.PASSPHRASE }}
-      continue-on-error: true
 
         
         
