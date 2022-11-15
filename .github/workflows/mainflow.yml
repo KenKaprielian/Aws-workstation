@@ -30,22 +30,7 @@ jobs:
           echo "json"
         ) | aws configure
         
-        
-        (
-          sleep .5
-          echo ""
-          sleep .5
-          echo ""
-          sleep .5
-          echo ""
-          sleep .5
-          echo ""
-        ) | aws configure
-        
-        echo "secret: ${{ secrets.access_key }}"
-        
         cat ~/.aws/config
-        ls -a
 
     - uses: kenkaprielian/terraform_state_artifact@main
       with:
